@@ -1,0 +1,193 @@
+.programs__table {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  background-color: $navbar-color;
+  border-radius: 10px;
+  @media only screen and (max-width: 1010px) {
+    overflow-x: scroll;
+  }
+  table {
+    width: 100%;
+    padding: 5px 0px;
+    thead {
+      tr {
+        th {
+          h1 {
+            font-family: $font;
+            font-weight: $font-light;
+            font-size: $s-font-size;
+            color: $main-text-color;
+          }
+        }
+        td {
+          display: flex;
+          justify-content: right;
+          padding: 0px 5px;
+          .thead-add-btn {
+            padding: 6px;
+            svg {
+              color: $secondary-light-blue;
+            }
+          }
+        }
+      }
+    }
+    tbody {
+      width: 100%;
+
+      tr {
+        padding: 5px 10px;
+        background-color: rgba($color: #000000, $alpha: 0.3);
+        outline: 1px solid transparent !important;
+        &.selected-row {
+          outline: 1px solid rgba($color: $main-color, $alpha: 0.5) !important;
+          border-radius: 2px !important;
+          padding: 4px !important;
+          background-color: rgba($color: $secondary-dark-color, $alpha: 0.8);
+        }
+        td {
+          text-align: center;
+          padding: 0px 10px;
+          h3 {
+            font-family: $font;
+            font-weight: $font-light;
+            font-size: $s-font-size;
+            color: $main-text-color;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+          }
+          &:nth-last-child(2) {
+            max-width: 200px !important;
+            // min-width: 200px !important;
+          }
+          &:nth-last-child(3) {
+            max-width: 150px !important;
+            // min-width: 150px !important;
+          }
+          &:nth-last-child(4) {
+            max-width: 370px !important;
+            // min-width: 370px !important;
+          }
+          &:nth-last-child(5) {
+            max-width: 150px !important;
+            // min-width: 150px !important;
+          }
+          &:nth-last-child(7) {
+            max-width: 90px !important;
+            // min-width: 150px !important;
+          }
+        }
+        .table-btn-cont {
+          display: flex;
+          gap: 5px;
+          justify-content: right;
+          align-items: center;
+          padding: 5px;
+          .row-delete {
+            svg {
+              color: $secondary-light-red;
+            }
+          }
+          .row-edit {
+            svg {
+              color: $main-color;
+            }
+          }
+          .table-row-btn {
+            padding: 5px;
+          }
+        }
+      }
+    }
+  }
+  .pagination {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+    padding: 5px;
+    .pagination-btn-cont {
+      display: flex;
+      gap: 5px;
+      padding: 5px 0px;
+    }
+    .table-pagination {
+      padding: 5px;
+    }
+    span {
+      padding: 0px 5px;
+      font-size: $xs-font-size;
+      font-family: $font;
+      font-weight: $font-light;
+      color: $main-text-color;
+    }
+    select {
+      padding: 5px;
+      background-color: rgba($color: #00416b, $alpha: 0.7);
+      border-radius: 5px;
+      border: 1.2px solid $main-color;
+      color: $main-text-color;
+      font-size: $xs-font-size;
+      font-family: $font;
+      font-weight: $font-light;
+    }
+  }
+}
+.programs__table-delete-popup {
+  position: absolute;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  // max-width: 300px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color: #000000, $alpha: 0.2);
+  backdrop-filter: blur(1px);
+  z-index: -1;
+  align-self: center;
+  justify-self: center;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  &.active {
+    z-index: 999;
+    opacity: 1;
+  }
+  .programs__table-delete-content {
+    position: relative;
+    background-color: $contrast-color;
+    max-width: 300px;
+    width: 100%;
+    height: 200px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba($color: $main-color, $alpha: 0.3);
+    h1 {
+      font-size: $s-font-size;
+      font-family: $font;
+      font-weight: $font-medium;
+      color: $main-text-color;
+      text-align: center;
+      span {
+        font-size: $xs-font-size;
+        font-family: $font;
+        font-weight: $font-light;
+        color: $main-secondary-text-color;
+        text-align: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
+// Fonts Variables
+$font: "Poppins", sans-serif;
+$font-bold: 700; // Font weight 700
+$font-medium: 500; // Font weight 500
+$font-light: 300; // Font weight 300
+
+// Font Sizes
+$xl-font-size: 1.7rem;
+$l-font-size: 1.3rem;
+$m-font-size: 1.15rem;
+$s-font-size: 1rem;
+$xs-font-size: 0.8125rem;
+
+// Colors Variables
+$contrast-color: #404040;
+$navbar-color: #111e29;
+$main-secondary-text-color: #e6e7e8;
+$main-text-color: #fff;
+$secondary-color: #f8b41a;
+$main-color: #40b1e5;
+$secondary-body-color: #e7edfb;
+$secondary-text-color: #333;
+$secondary-dark-color: #00416b;
+$secondary-light-blue: #4fabb8;
+$secondary-light-red: #f15b5b;
+$secondary-purple-color: #9f64a8;
+$secondary-subtitle-text-color: #5e5e5e;
+$disabled-color: #5e5e5e;
+$footer-color: #152e4a;
+
+// Side Padding
+$mobile-padding: 20px;
+$desktop-padding: 50px;
+$nav-padding: 25px;
+
+// Inside content padding
+$inside-padding: 10px;

@@ -1,0 +1,103 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 30px;
+  text-align: center;
+  border: 2px solid $main-color;
+  background-color: transparent;
+  box-shadow: 0.1px 0px 2.2px rgba(0, 0, 0, 0.011),
+    0.1px 0px 5.3px rgba(0, 0, 0, 0.016), 0.3px 0px 10px rgba(0, 0, 0, 0.02),
+    0.4px 0px 17.9px rgba(0, 0, 0, 0.024), 0.8px 0px 33.4px rgba(0, 0, 0, 0.029),
+    2px 0px 80px rgba(0, 0, 0, 0.04);
+  border-radius: 5px;
+  cursor: pointer;
+  color: $main-text-color;
+  font-size: $s-font-size;
+  font-family: $font;
+  font-weight: $font-light;
+  svg {
+    color: $main-text-color;
+    transition: none !important;
+  }
+  &:hover {
+    border-radius: 7px;
+    background-color: rgba($color: $main-color, $alpha: 0.2);
+    border: 1px solid rgba($color: #000000, $alpha: 0.2);
+  }
+  &:active {
+    border-radius: 2rem;
+    background-color: transparent;
+    border: 1px solid rgba($color: #000000, $alpha: 0.2);
+    margin-bottom: 2px;
+  }
+  &.disabled {
+    background-color: rgba($color: #696969, $alpha: 1) !important;
+    color: $secondary-text-color !important;
+    border: solid 1px #4e4e4e !important;
+    pointer-events: none;
+  }
+  &.md-btn {
+    font-size: $s-font-size !important;
+    padding: 7.5px 20px;
+    svg {
+      width: 20px !important;
+    }
+  }
+  &.sm-btn {
+    font-size: $s-font-size !important;
+    padding: 6.5px 13px;
+    svg {
+      width: 20px !important;
+    }
+  }
+}
+
+.home__log-btn {
+  width: 100%;
+  border-radius: 5px 5px 20px 20px !important;
+  background-color: $secondary-color;
+  padding: 12px 30px;
+  border: 1px solid transparent;
+  font-family: $font;
+  font-weight: $font-bold;
+}
+// Button Variants
+
+.btn__blue {
+  border: 1.5px solid $main-color;
+  &:hover {
+    background-color: rgba($color: $main-color, $alpha: 0.2);
+  }
+}
+.btn__orange {
+  border: 1.5px solid $secondary-color;
+  &:hover {
+    background-color: rgba($color: $secondary-color, $alpha: 0.2);
+  }
+}
+.btn__blueDark {
+  border: 1.5px solid $secondary-dark-color;
+  &:hover {
+    background-color: rgba($color: $secondary-dark-color, $alpha: 0.2);
+  }
+}
+.btn__blueLight {
+  border: 1.5px solid $secondary-light-blue;
+  &:hover {
+    background-color: rgba($color: $secondary-light-blue, $alpha: 0.2);
+  }
+}
+.btn__red {
+  border: 1.5px solid $secondary-light-red;
+  &:hover {
+    background-color: rgba($color: $secondary-light-red, $alpha: 0.2);
+  }
+}
+.btn__purple {
+  border: 2px solid $secondary-purple-color;
+  &:hover {
+    background-color: rgba($color: $secondary-purple-color, $alpha: 0.2);
+  }
+}

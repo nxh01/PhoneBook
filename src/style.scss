@@ -1,0 +1,18 @@
+// Importing abstracts
+@import "./scss/abstracts/variables";
+
+// Importing base
+@import "./scss/base/base";
+@import "./scss/base/typography";
+
+// Importing components
+@import "./scss/components/buttons";
+@import "./scss/components/table";
+@import "./scss/components/rootModal";
+@import "./scss/components/inputs";
+
+// Importing Routes
+@import "./scss/routes/home";
+
+// Importing Pages
+@import "./scss/routes/pages/phoneBook";
