@@ -18,7 +18,8 @@ export default function Table(props) {
   const [deletePopup, setDeletePopup] = useState(false);
   const [itemRow, setItemRow] = useState();
 
-  const { columns, data, deleteBtn, editBtn, addBtn, style } = props;
+  const { columns, data, deleteBtn, editBtn, addBtn, refreshBtn, style } =
+    props;
   const {
     getTableProps,
     getTableBodyProps,
@@ -119,47 +120,61 @@ export default function Table(props) {
           </tbody>
         </table>
 
-        <div className="pagination">
-          <div className="pagination-btn-cont">
+        <div
+          className="pagination"
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
+          <div>
             <Button
-              className={"table-pagination"}
-              action={() => {
-                gotoPage(0);
-              }}
-              variant={"orange"}
-              Icon={UilAngleDoubleLeft}
-              disabled={pageIndex === 0 ? true : false}
-            />
-            <Button
-              className={"table-pagination"}
-              action={() => {
-                previousPage();
-              }}
-              variant={"orange"}
-              Icon={UilAngleLeft}
-              disabled={pageIndex === 0 ? true : false}
-            />
-            <Button
-              className={"table-pagination"}
-              action={() => nextPage()}
-              variant={"orange"}
-              Icon={UilAngleRight}
-              disabled={pageIndex === pageCount - 1 ? true : false}
-            />
-            <Button
-              className={"table-pagination"}
-              action={() => gotoPage(pageCount - 1)}
-              variant={"orange"}
-              Icon={UilAngleDoubleRight}
-              disabled={pageIndex === pageCount - 1 ? true : false}
+              className={"refresh-btn"}
+              variant={"blue"}
+              text={"Refresh"}
+              Icon={UilRedo}
+              action={refreshBtn}
             />
           </div>
-          <span>
-            Page{" "}
-            <strong>
-              {pageIndex + 1} of {pageCount}
-            </strong>{" "}
-          </span>
+          <div className="pagination">
+            <div className="pagination-btn-cont">
+              <Button
+                className={"table-pagination"}
+                action={() => {
+                  gotoPage(0);
+                }}
+                variant={"orange"}
+                Icon={UilAngleDoubleLeft}
+                disabled={pageIndex === 0 ? true : false}
+              />
+              <Button
+                className={"table-pagination"}
+                action={() => {
+                  previousPage();
+                }}
+                variant={"orange"}
+                Icon={UilAngleLeft}
+                disabled={pageIndex === 0 ? true : false}
+              />
+              <Button
+                className={"table-pagination"}
+                action={() => nextPage()}
+                variant={"orange"}
+                Icon={UilAngleRight}
+                disabled={pageIndex === pageCount - 1 ? true : false}
+              />
+              <Button
+                className={"table-pagination"}
+                action={() => gotoPage(pageCount - 1)}
+                variant={"orange"}
+                Icon={UilAngleDoubleRight}
+                disabled={pageIndex === pageCount - 1 ? true : false}
+              />
+            </div>
+            <span>
+              Page{" "}
+              <strong>
+                {pageIndex + 1} of {pageCount}
+              </strong>{" "}
+            </span>
+          </div>
         </div>
         <div
           className={`programs__table-delete-popup ${

@@ -592,6 +592,26 @@ p {
   margin-left: 5px;
 }
 
+.multiple__input-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.multiple__input-container .modal__input-cnt {
+  min-width: 300px;
+}
+@media only screen and (max-width: 466px) {
+  .multiple__input-container {
+    flex-direction: column;
+  }
+  .multiple__input-container .modal__input-cnt {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+
 .home {
   flex: 1;
   display: flex;

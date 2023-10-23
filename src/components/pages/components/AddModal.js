@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "../../components/buttons/Button";
 import ModalInput from "../../components/inputs/ModalInput";
+import MultipleInput from "../../components/inputs/MultipleInput";
 
 function EditModal() {
   const [formState, setFormState] = useState({});
@@ -13,7 +14,8 @@ function EditModal() {
     return Math.floor(Math.random() * 900) + 1;
   };
 
-  const handleAdd = () => {
+  const handleAdd = (e) => {
+    e.preventDefault();
     const id = generateRndId();
 
     const existingContacts = JSON.parse(localStorage.getItem("contacts")) || [];
@@ -27,7 +29,7 @@ function EditModal() {
 
   return (
     <>
-      <form className="add__container">
+      <form className="add__container" onSubmit={handleAdd}>
         <ModalInput
           type={"text"}
           required={true}
@@ -68,13 +70,13 @@ function EditModal() {
           value={formState.country || ""}
           onChange={handleChange}
         />
+        <MultipleInput />
         <div className="modal__button-container">
           <Button
             className={"action-buttons-modal"}
             variant={"orange"}
             text={"Save"}
-            type={"button"}
-            action={handleAdd}
+            type={"submit"}
           />
         </div>
       </form>

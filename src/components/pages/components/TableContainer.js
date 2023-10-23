@@ -14,14 +14,6 @@ const columns = [
   { Header: "Email", accessor: "email" },
 ];
 
-function chunkArray(array, chunkSize) {
-  const result = [];
-  for (let i = 0; i < array.length; i += chunkSize) {
-    result.push(array.slice(i, i + chunkSize));
-  }
-  return result;
-}
-
 function TableContainer() {
   const [visibleModal, setVisibleModal] = useState(false);
   const [modalVariant, setModalVariant] = useState(1);
@@ -29,12 +21,9 @@ function TableContainer() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    setTimeout(function () {
-      const storedData = JSON.parse(localStorage.getItem("contacts")) || [];
-      setData(storedData);
-      console.log(data);
-    }, 1000);
-  }, [data]);
+    const storedData = JSON.parse(localStorage.getItem("contacts")) || [];
+    setData(storedData);
+  }, []);
 
   const handleDelete = (row) => {
     const id = row.original.id;
@@ -53,6 +42,11 @@ function TableContainer() {
     setSelectedItems((prevItems) => [...prevItems, item]);
     setVisibleModal(true);
     setModalVariant(2);
+  };
+
+  const handleRefresh = () => {
+    const storedData = JSON.parse(localStorage.getItem("contacts")) || [];
+    setData(storedData);
   };
 
   return (
@@ -76,6 +70,7 @@ function TableContainer() {
         data={data}
         editBtn={handleModalOpen}
         deleteBtn={handleDelete}
+        refreshBtn={handleRefresh}
         addBtn={() => {
           setVisibleModal(true);
           setModalVariant(1);
