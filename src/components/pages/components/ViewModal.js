@@ -3,7 +3,7 @@ import Button from "../../components/buttons/Button";
 import ModalInput from "../../components/inputs/ModalInput";
 import { UilPlusCircle } from "@iconscout/react-unicons";
 
-function EditModal(props) {
+function ViewModal(props) {
   const { selectedItems } = props;
   const [formState, setFormState] = useState({
     name: "",
@@ -33,48 +33,6 @@ function EditModal(props) {
     setFormState(initialFormState);
   }, [selectedItems]);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormState({ ...formState, [name]: value });
-  };
-
-  const handleEmailChange = (event, index) => {
-    const updatedEmails = [...formState.emails];
-    updatedEmails[index] = event.target.value;
-    setFormState({ ...formState, emails: updatedEmails });
-  };
-
-  const handleAddEmailInput = () => {
-    const newEmails = Array.isArray(formState.emails)
-      ? [...formState.emails, ""]
-      : [""];
-    setFormState({ ...formState, emails: newEmails });
-  };
-
-  const handlePhoneChange = (event, index) => {
-    const updatedPhone = [...formState.phoneNumber];
-    updatedPhone[index] = event.target.value;
-    setFormState({ ...formState, phoneNumber: updatedPhone });
-  };
-
-  const handleAddPhoneInput = () => {
-    setFormState({ ...formState, phoneNumber: [...formState.phoneNumber, ""] });
-  };
-
-  const handleEdit = () => {
-    const data = JSON.parse(localStorage.getItem("contacts"));
-
-    const index = data.findIndex((item) => item.id === formState.id);
-
-    if (index !== -1) {
-      data[index] = formState;
-      localStorage.setItem("contacts", JSON.stringify(data));
-      console.log("Item with ID", formState.id, "updated.");
-    } else {
-      console.error("Item not found in the contacts array.");
-    }
-  };
-
   return (
     <>
       <form className="edit__container">
@@ -84,7 +42,7 @@ function EditModal(props) {
           placeholder={"Name"}
           name={"name"}
           value={formState.name || ""}
-          onChange={handleChange}
+          disabled={true}
         />
         <ModalInput
           type={"text"}
@@ -92,7 +50,7 @@ function EditModal(props) {
           placeholder={"Last Name"}
           name={"lastName"}
           value={formState.lastName || ""}
-          onChange={handleChange}
+          disabled={true}
         />
         <ModalInput
           type={"text"}
@@ -100,7 +58,7 @@ function EditModal(props) {
           placeholder={"Address"}
           name={"address"}
           value={formState.address || ""}
-          onChange={handleChange}
+          disabled={true}
         />
         <ModalInput
           type={"text"}
@@ -108,7 +66,7 @@ function EditModal(props) {
           placeholder={"City"}
           name={"city"}
           value={formState.city || ""}
-          onChange={handleChange}
+          disabled={true}
         />
         <ModalInput
           type={"text"}
@@ -116,7 +74,7 @@ function EditModal(props) {
           placeholder={"Country"}
           name={"country"}
           value={formState.country || ""}
-          onChange={handleChange}
+          disabled={true}
         />
         <div>
           {Array.isArray(formState.emails) &&
@@ -128,16 +86,9 @@ function EditModal(props) {
                 placeholder={`Email ${index + 1}`}
                 name={`email-${index}`}
                 value={email}
-                onChange={(e) => handleEmailChange(e, index)}
+                disabled={true}
               />
             ))}
-          <Button
-            className={"add-btn-multiple"}
-            action={handleAddEmailInput}
-            variant={"blue"}
-            Icon={UilPlusCircle}
-            style={{ marginTop: "10px" }}
-          />
         </div>
 
         <div>
@@ -147,33 +98,16 @@ function EditModal(props) {
                 key={index}
                 type={"text"}
                 required={true}
-                placeholder={`Phone Number ${index + 1}`}
+                placeholder={`phoneNumber ${index + 1}`}
                 name={`phoneNumber-${index}`}
                 value={phoneNumber}
-                onChange={(e) => handlePhoneChange(e, index)}
+                disabled={true}
               />
             ))}
-          <Button
-            className={"add-btn-multiple"}
-            action={handleAddPhoneInput}
-            variant={"blue"}
-            Icon={UilPlusCircle}
-            style={{ marginTop: "10px" }}
-          />
-        </div>
-
-        <div className="modal__button-container">
-          <Button
-            className={"action-buttons-modal"}
-            variant={"orange"}
-            text={"Save"}
-            type={"button"}
-            action={handleEdit}
-          />
         </div>
       </form>
     </>
   );
 }
 
-export default EditModal;
+export default ViewModal;

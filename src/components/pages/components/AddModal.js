@@ -1,13 +1,37 @@
 import { useState } from "react";
 import Button from "../../components/buttons/Button";
 import ModalInput from "../../components/inputs/ModalInput";
-import MultipleInput from "../../components/inputs/MultipleInput";
+import { UilPlusCircle } from "@iconscout/react-unicons";
 
 function EditModal() {
-  const [formState, setFormState] = useState({});
+  const [formState, setFormState] = useState({
+    emails: [""],
+    phoneNumber: [""],
+  });
 
   const handleChange = (event) => {
-    setFormState({ ...formState, [event.target.name]: event.target.value });
+    const { name, value } = event.target;
+    setFormState({ ...formState, [name]: value });
+  };
+
+  const handleEmailChange = (event, index) => {
+    const updatedEmails = [...formState.emails];
+    updatedEmails[index] = event.target.value;
+    setFormState({ ...formState, emails: updatedEmails });
+  };
+
+  const handleAddEmailInput = () => {
+    setFormState({ ...formState, emails: [...formState.emails, ""] });
+  };
+
+  const handlePhoneChange = (event, index) => {
+    const updatedPhone = [...formState.phoneNumber];
+    updatedPhone[index] = event.target.value;
+    setFormState({ ...formState, phoneNumber: updatedPhone });
+  };
+
+  const handleAddPhoneInput = () => {
+    setFormState({ ...formState, phoneNumber: [...formState.phoneNumber, ""] });
   };
 
   const generateRndId = () => {
@@ -24,7 +48,10 @@ function EditModal() {
 
     localStorage.setItem("contacts", JSON.stringify(newContacts));
 
-    setFormState({});
+    setFormState({
+      emails: [""],
+      phoneNumber: [""],
+    });
   };
 
   return (
@@ -70,7 +97,51 @@ function EditModal() {
           value={formState.country || ""}
           onChange={handleChange}
         />
-        <MultipleInput />
+
+        <div>
+          {formState.emails.map((email, index) => (
+            <ModalInput
+              key={index}
+              type={"email"}
+              required={true}
+              placeholder={`Email ${index + 1}`}
+              name={`email-${index}`}
+              value={email}
+              onChange={(e) => handleEmailChange(e, index)}
+            />
+          ))}
+
+          <Button
+            className={"add-btn-multiple"}
+            action={handleAddEmailInput}
+            variant={"blue"}
+            Icon={UilPlusCircle}
+            style={{ marginTop: "10px" }}
+          />
+        </div>
+
+        <div>
+          {formState.phoneNumber.map((phoneNumber, index) => (
+            <ModalInput
+              key={index}
+              type={"text"}
+              required={true}
+              placeholder={`Phone Number ${index + 1}`}
+              name={`phoneNumber-${index}`}
+              value={phoneNumber}
+              onChange={(e) => handlePhoneChange(e, index)}
+            />
+          ))}
+
+          <Button
+            className={"add-btn-multiple"}
+            action={handleAddPhoneInput}
+            variant={"blue"}
+            Icon={UilPlusCircle}
+            style={{ marginTop: "10px" }}
+          />
+        </div>
+
         <div className="modal__button-container">
           <Button
             className={"action-buttons-modal"}

@@ -9,6 +9,7 @@ function Button(props) {
     disabled,
     size,
     children,
+    style,
   } = props;
   return (
     <>
@@ -19,6 +20,7 @@ function Button(props) {
           variant == "default" ? "default" : `btn__${variant}`
         }  ${className} ${size}-btn ${disabled ? "disabled" : ""} `}
         onClick={action}
+        style={style}
       >
         {text}
         {Icon && <Icon />}

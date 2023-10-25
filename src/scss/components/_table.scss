@@ -102,6 +102,11 @@
               color: $main-color;
             }
           }
+          .view-edit {
+            svg {
+              color: $secondary-purple-color;
+            }
+          }
           .table-row-btn {
             padding: 5px;
           }

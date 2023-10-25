@@ -3,6 +3,7 @@ import Table from "../../components/tables/Table";
 import RootModal from "../../components/modals/RootModal";
 import AddModal from "./AddModal";
 import EditModal from "./EditModal";
+import ViewModal from "./ViewModal";
 
 const columns = [
   { Header: "Id", accessor: "id" },
@@ -11,7 +12,16 @@ const columns = [
   { Header: "address", accessor: "address" },
   { Header: "city", accessor: "city" },
   { Header: "country", accessor: "country" },
-  { Header: "Email", accessor: "email" },
+  {
+    Header: "Emails",
+    accessor: "emails",
+    Cell: ({ cell }) => cell.value.join(", "),
+  },
+  {
+    Header: "Phone Number",
+    accessor: "phoneNumber",
+    Cell: ({ cell }) => cell.value.join(", "),
+  },
 ];
 
 function TableContainer() {
@@ -44,6 +54,13 @@ function TableContainer() {
     setModalVariant(2);
   };
 
+  const handleView = (row) => {
+    const item = row.original;
+    setSelectedItems((prevItems) => [...prevItems, item]);
+    setVisibleModal(true);
+    setModalVariant(3);
+  };
+
   const handleRefresh = () => {
     const storedData = JSON.parse(localStorage.getItem("contacts")) || [];
     setData(storedData);
@@ -57,18 +74,23 @@ function TableContainer() {
           setVisibleModal(false);
           setSelectedItems([]);
         }}
-        title={"Add/Edit Contacts"}
-        subtitle={"Everything here is required"}
+        title={modalVariant != 3 ? "Add/Edit Contacts" : "View Mode"}
+        subtitle={modalVariant != 3 ? "Everything here is required" : ""}
         btnVisible={false}
       >
-        {(modalVariant === 1 && <AddModal />) || (
+        {/* {(modalVariant === 1 && <AddModal />) || (
           <EditModal selectedItems={selectedItems} />
-        )}
+        )} */}
+        {(modalVariant === 1 && <AddModal />) ||
+          (modalVariant === 2 && (
+            <EditModal selectedItems={selectedItems} />
+          )) || <ViewModal selectedItems={selectedItems} />}
       </RootModal>
       <Table
         columns={columns}
         data={data}
         editBtn={handleModalOpen}
+        viewBtn={handleView}
         deleteBtn={handleDelete}
         refreshBtn={handleRefresh}
         addBtn={() => {

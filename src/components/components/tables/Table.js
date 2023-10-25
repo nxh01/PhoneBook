@@ -10,6 +10,7 @@ import {
   UilPen,
   UilPlusCircle,
   UilRedo,
+  UilEye,
 } from "@iconscout/react-unicons";
 import { useState } from "react";
 
@@ -18,8 +19,16 @@ export default function Table(props) {
   const [deletePopup, setDeletePopup] = useState(false);
   const [itemRow, setItemRow] = useState();
 
-  const { columns, data, deleteBtn, editBtn, addBtn, refreshBtn, style } =
-    props;
+  const {
+    columns,
+    data,
+    deleteBtn,
+    editBtn,
+    addBtn,
+    refreshBtn,
+    viewBtn,
+    style,
+  } = props;
   const {
     getTableProps,
     getTableBodyProps,
@@ -45,6 +54,11 @@ export default function Table(props) {
   const handleEdit = (row) => {
     editBtn(row);
   };
+
+  const handleView = (row) => {
+    viewBtn(row);
+  };
+
   const handleDeletePopup = (row) => {
     setItemRow(row);
     setDeletePopup(true);
@@ -101,6 +115,12 @@ export default function Table(props) {
                     </td>
                   ))}
                   <td className="table-btn-cont">
+                    <Button
+                      className={"table-row-btn view-edit"}
+                      action={() => handleView(row)}
+                      variant={"purple"}
+                      Icon={UilEye}
+                    />
                     <Button
                       className={"table-row-btn row-edit"}
                       action={() => handleEdit(row)}

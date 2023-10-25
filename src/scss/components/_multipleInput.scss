@@ -7,8 +7,13 @@
   .modal__input-cnt {
     min-width: 300px;
   }
-
+  button {
+    margin-top: 23px;
+  }
   @media only screen and (max-width: 466px) {
+    button {
+      margin-top: 23px;
+    }
     flex-direction: column;
     .modal__input-cnt {
       width: 100%;
