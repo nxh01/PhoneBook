@@ -78,9 +78,6 @@ function TableContainer() {
         subtitle={modalVariant != 3 ? "Everything here is required" : ""}
         btnVisible={false}
       >
-        {/* {(modalVariant === 1 && <AddModal />) || (
-          <EditModal selectedItems={selectedItems} />
-        )} */}
         {(modalVariant === 1 && <AddModal />) ||
           (modalVariant === 2 && (
             <EditModal selectedItems={selectedItems} />
